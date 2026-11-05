@@ -14,7 +14,7 @@ const functions = [
   'getReport', 'shiftHours', 'calculateShiftOvertime', 'formatHours',
   'formatDayTotalHours', 'getReportDayStatus', 'isCalendarRestDay',
   'withHolidayFill', 'thinBorder', 'formatClockMinutes', 'getInspectionStartTime',
-  'getInspectionStatus', 'getAdjustedInspectionEnd', 'loadWorkbook', 'holidayTypeLabel'
+  'getInspectionStatus', 'getAdjustedInspectionEnd', 'loadWorkbook', 'holidayTypeLabel', 'dayFillStyle'
 ];
 
 function harness() {
@@ -155,6 +155,12 @@ test('unpaid typhoon day counts as an ordinary workday and keeps a white row', (
   assert.equal(c.isCalendarRestDay(unpaid), false);
   assert.equal(c.isCalendarRestDay(paid), true);
   assert.equal(c.isCalendarRestDay(national), true);
+  // 無薪假整列白底（含「正常」狀態格的淡綠底也要移除），其餘假日灰底、平日維持原樣
+  const okFill = { font: { bold: true }, fill: { fgColor: { rgb: 'EAF6EC' } } };
+  assert.equal(c.dayFillStyle(unpaid, okFill).fill, undefined);
+  assert.equal(c.dayFillStyle(paid, okFill).fill.fgColor.rgb, 'E5E7EB');
+  assert.equal(c.dayFillStyle(national, okFill).fill.fgColor.rgb, 'E5E7EB');
+  assert.equal(c.dayFillStyle(normal, okFill).fill.fgColor.rgb, 'EAF6EC');
   // 未出勤時狀態文字標示無薪
   assert.equal(c.holidayTypeLabel(holidays[2]), '無薪假');
   assert.equal(c.holidayTypeLabel(holidays[3]), '有薪假');

@@ -1303,6 +1303,16 @@ detailBody.querySelectorAll(".shift-select").forEach((select) => {
       return { ...style, fill: { fgColor: { rgb: "E5E7EB" } } };
     }
 
+    // 無薪假整列白底：連「正常」狀態格的淡綠底也要移除；
+    // 改回直接用 isCalendarRestDay 套灰底，無薪假出勤列的狀態格會殘留淡綠底（無錯誤訊息，只有顏色不同）
+    function dayFillStyle(day, style) {
+      if (day.holiday?.unpaid) {
+        const { fill, ...rest } = style;
+        return rest;
+      }
+      return isCalendarRestDay(day) ? withHolidayFill(style) : style;
+    }
+
     exportButton.addEventListener("click", () => {
       const report = getReport();
       const headers = ["日期", "星期", "班別", "狀態", "班別起始", "班別結束", "上班1", "下班1", "上班2", "下班2", "合計小時", "加班時數", "月加班累計", "備註"];
@@ -1373,9 +1383,9 @@ detailBody.querySelectorAll(".shift-select").forEach((select) => {
                 ? redStyle
                 : okStyle;
             if (columnIndex === 3) {
-              return isCalendarRestDay(day) ? withHolidayFill(statusStyle) : statusStyle;
+              return dayFillStyle(day, statusStyle);
             }
-            return isCalendarRestDay(day) ? withHolidayFill(normalStyle) : normalStyle;
+            return dayFillStyle(day, normalStyle);
           }));
         });
 
@@ -1525,7 +1535,7 @@ detailBody.querySelectorAll(".shift-select").forEach((select) => {
           const inspectionStatus = getInspectionStatus(day, inspectionStart, inspectionEnd);
           const note = (day.note || "") + (adjustOvertime ? (isRestDay ? "；超過月加班上限，週末／假日排班建議不列入" : "；超過月加班上限，排班建議已扣除當日加班時數") : "");
           const checkDay = { ...day, cumulativeOvertime: inspectionCumulative, overtimeHours: checkOvertime };
-          const inspectionBaseStyle = day.absent || ["未上班 / 休假", "颱風假", "國定假日"].includes(inspectionStatus)
+          const inspectionBaseStyle = day.absent || ["未上班 / 休假", "有薪假", "無薪假", "國定假日"].includes(inspectionStatus)
             ? statusWarnStyle
             : inspectionStatus === "正常" ? okStyle : redStyle;
           const reportBaseStyle = day.absent
@@ -1533,8 +1543,8 @@ detailBody.querySelectorAll(".shift-select").forEach((select) => {
             : day.missingEndPunch || day.holidayOvertime || day.weekendOvertime || day.short || adjustOvertime || checkDay.cumulativeOvertime > report.overtimeLimit
               ? redStyle
               : okStyle;
-          const inspectionStatusStyle = isCalendarRestDay(day) ? withHolidayFill(inspectionBaseStyle) : inspectionBaseStyle;
-          const reportStatusStyle = isCalendarRestDay(day) ? withHolidayFill(reportBaseStyle) : reportBaseStyle;
+          const inspectionStatusStyle = dayFillStyle(day, inspectionBaseStyle);
+          const reportStatusStyle = dayFillStyle(day, reportBaseStyle);
           rows.push([
             formatDate(day.date), `星期${weekdays[day.date.getDay()]}`, day.shift?.name || "",
             inspectionStatus,
@@ -1550,7 +1560,7 @@ detailBody.querySelectorAll(".shift-select").forEach((select) => {
           styles.push(headers.map((_, columnIndex) => {
             if (columnIndex === 3) return inspectionStatusStyle;
             if (columnIndex === 14) return reportStatusStyle;
-            return isCalendarRestDay(day) ? withHolidayFill(normalStyle) : normalStyle;
+            return dayFillStyle(day, normalStyle);
           }));
         });
 

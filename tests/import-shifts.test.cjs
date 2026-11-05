@@ -14,7 +14,7 @@ const functions = [
   'getReport', 'shiftHours', 'calculateShiftOvertime', 'formatHours',
   'formatDayTotalHours', 'getReportDayStatus', 'isCalendarRestDay',
   'withHolidayFill', 'thinBorder', 'formatClockMinutes', 'getInspectionStartTime',
-  'getInspectionStatus', 'getAdjustedInspectionEnd', 'loadWorkbook'
+  'getInspectionStatus', 'getAdjustedInspectionEnd', 'loadWorkbook', 'holidayTypeLabel'
 ];
 
 function harness() {
@@ -129,6 +129,42 @@ test('configured shift names are matched dynamically and missing built-ins remai
   assert.equal(days[1].shift.end, '22:00');
   assert.equal(days[2].shift.name, '正常班');
   assert.ok(c.getAvailableShifts().some((s) => s.name === 'A班'));
+});
+
+test('unpaid typhoon day counts as an ordinary workday and keeps a white row', () => {
+  const { context: c } = harness();
+  const holidays = {
+    2: { date: '2026-09-02', name: '颱風假', type: 'typhoon', unpaid: true },
+    3: { date: '2026-09-03', name: '颱風假', type: 'typhoon' },
+    4: { date: '2026-09-04', name: '國慶補假', type: 'national' }
+  };
+  c.getHolidayForDate = (date) => holidays[date.getDate()] || null;
+  c.loadWorkbook({ SheetNames: ['data'], Sheets: { data: [input(1), input(2), input(3), input(4)] } });
+  const days = c.getReport().people[0].days;
+  const [normal, unpaid, paid, national] = days;
+  // 無薪假出勤：不算假日加班，時數與一般上班日相同
+  assert.equal(unpaid.holidayOvertime, false);
+  assert.equal(unpaid.overtimeHours, normal.overtimeHours);
+  assert.match(unpaid.note, /無薪假/);
+  assert.equal(c.getReportDayStatus(unpaid, 46), c.getReportDayStatus(normal, 46));
+  // 有薪颱風假與國定假日維持全數計加班
+  assert.equal(paid.holidayOvertime, true);
+  assert.equal(national.holidayOvertime, true);
+  assert.ok(paid.overtimeHours > unpaid.overtimeHours);
+  // 底色：無薪假為白底，其餘假日維持灰底
+  assert.equal(c.isCalendarRestDay(unpaid), false);
+  assert.equal(c.isCalendarRestDay(paid), true);
+  assert.equal(c.isCalendarRestDay(national), true);
+  // 未出勤時狀態文字標示無薪
+  assert.equal(c.holidayTypeLabel(holidays[2]), '無薪假');
+  assert.equal(c.holidayTypeLabel(holidays[3]), '有薪假');
+  assert.equal(c.holidayTypeLabel(holidays[4]), '國定假日');
+  const absent = c.getReport().people[0].days[9];
+  holidays[11] = { date: '2026-09-11', name: '颱風假', type: 'typhoon', unpaid: true };
+  const absentUnpaid = c.getReport().people[0].days[10];
+  assert.equal(absent.absent, true);
+  assert.equal(absentUnpaid.holidayOvertime, false);
+  assert.equal(c.getReportDayStatus(absentUnpaid, 46), '無薪假');
 });
 
 test('embedded JavaScript parses', () => {

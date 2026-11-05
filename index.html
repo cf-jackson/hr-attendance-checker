@@ -462,7 +462,7 @@
       <section id="settingsView" class="page-view hidden">
         <div class="architecture">
           <article class="architecture-card shift-card"><h2>設定班別</h2><p>維護班別名稱、起始時間與結束時間。</p><div class="shift-settings"><div class="shift-heading"><span>班別名稱</span><span>起始時間</span><span>結束時間</span><span></span></div><div id="shiftSettingsBody"><div class="shift-row" data-index="0"><input data-field="name" type="text" value="A班" aria-label="班別名稱"><input data-field="start" type="time" value="08:00" aria-label="班別起始時間"><input data-field="end" type="time" value="16:00" aria-label="班別結束時間"><button class="button" type="button" data-remove-shift="0">刪除</button></div><div class="shift-row" data-index="1"><input data-field="name" type="text" value="正常班" aria-label="班別名稱"><input data-field="start" type="time" value="08:00" aria-label="班別起始時間"><input data-field="end" type="time" value="17:30" aria-label="班別結束時間"><button class="button" type="button" data-remove-shift="1">刪除</button></div></div><button id="addShiftButton" class="button shift-add" type="button">新增班別</button></div></article>
-          <article class="architecture-card holiday-card"><h2>設定假日</h2><p>已內建目前年度政府辦公日曆，可手動新增 2027 年及後續年度的國定假日或颱風假。</p><div class="holiday-settings"><div class="holiday-form"><input id="holidayDateInput" type="date" aria-label="假日日期"><input id="holidayNameInput" type="text" placeholder="假日名稱"><select id="holidayTypeInput" aria-label="假日類型"><option value="national">國定假日</option><option value="typhoon">颱風假</option></select><button id="addHolidayButton" class="button" type="button">新增假日</button></div><div id="holidayList" class="holiday-list"><div class="holiday-item"><span>2026-01-01</span><strong>元旦</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="0">刪除</button></div><div class="holiday-item"><span>2026-02-16</span><strong>春節</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="1">刪除</button></div><div class="holiday-item"><span>2026-02-17</span><strong>春節</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="2">刪除</button></div><div class="holiday-item"><span>2026-02-18</span><strong>春節</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="3">刪除</button></div><div class="holiday-item"><span>2026-02-19</span><strong>春節</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="4">刪除</button></div><div class="holiday-item"><span>2026-02-20</span><strong>春節</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="5">刪除</button></div><div class="holiday-item"><span>2026-02-27</span><strong>和平紀念日補假</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="6">刪除</button></div><div class="holiday-item"><span>2026-04-03</span><strong>兒童節及清明節連假</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="7">刪除</button></div><div class="holiday-item"><span>2026-04-06</span><strong>兒童節及清明節連假</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="8">刪除</button></div><div class="holiday-item"><span>2026-05-01</span><strong>勞動節</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="9">刪除</button></div><div class="holiday-item"><span>2026-06-19</span><strong>端午節</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="10">刪除</button></div><div class="holiday-item"><span>2026-09-25</span><strong>中秋節及教師節連假</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="11">刪除</button></div><div class="holiday-item"><span>2026-09-28</span><strong>孔子誕辰紀念日／教師節</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="12">刪除</button></div><div class="holiday-item"><span>2026-10-09</span><strong>國慶日補假</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="13">刪除</button></div><div class="holiday-item"><span>2026-10-26</span><strong>臺灣光復暨金門古寧頭大捷紀念日補假</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="14">刪除</button></div><div class="holiday-item"><span>2026-12-25</span><strong>行憲紀念日</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="15">刪除</button></div></div></div></article>
+          <article class="architecture-card holiday-card"><h2>設定假日</h2><p>已內建目前年度政府辦公日曆，可手動新增 2027 年及後續年度的國定假日或颱風假。</p><div class="holiday-settings"><div class="holiday-form"><input id="holidayDateInput" type="date" aria-label="假日日期"><input id="holidayNameInput" type="text" placeholder="假日名稱"><select id="holidayTypeInput" aria-label="假日類型"><option value="national">國定假日</option><option value="typhoon">有薪假</option><option value="typhoon-unpaid">無薪假</option></select><button id="addHolidayButton" class="button" type="button">新增假日</button></div><div id="holidayList" class="holiday-list"><div class="holiday-item"><span>2026-01-01</span><strong>元旦</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="0">刪除</button></div><div class="holiday-item"><span>2026-02-16</span><strong>春節</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="1">刪除</button></div><div class="holiday-item"><span>2026-02-17</span><strong>春節</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="2">刪除</button></div><div class="holiday-item"><span>2026-02-18</span><strong>春節</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="3">刪除</button></div><div class="holiday-item"><span>2026-02-19</span><strong>春節</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="4">刪除</button></div><div class="holiday-item"><span>2026-02-20</span><strong>春節</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="5">刪除</button></div><div class="holiday-item"><span>2026-02-27</span><strong>和平紀念日補假</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="6">刪除</button></div><div class="holiday-item"><span>2026-04-03</span><strong>兒童節及清明節連假</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="7">刪除</button></div><div class="holiday-item"><span>2026-04-06</span><strong>兒童節及清明節連假</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="8">刪除</button></div><div class="holiday-item"><span>2026-05-01</span><strong>勞動節</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="9">刪除</button></div><div class="holiday-item"><span>2026-06-19</span><strong>端午節</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="10">刪除</button></div><div class="holiday-item"><span>2026-09-25</span><strong>中秋節及教師節連假</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="11">刪除</button></div><div class="holiday-item"><span>2026-09-28</span><strong>孔子誕辰紀念日／教師節</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="12">刪除</button></div><div class="holiday-item"><span>2026-10-09</span><strong>國慶日補假</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="13">刪除</button></div><div class="holiday-item"><span>2026-10-26</span><strong>臺灣光復暨金門古寧頭大捷紀念日補假</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="14">刪除</button></div><div class="holiday-item"><span>2026-12-25</span><strong>行憲紀念日</strong><span class="holiday-type">國定假日</span><button class="button" type="button" data-remove-holiday="15">刪除</button></div></div></div></article>
           <article class="architecture-card"><h2>月結規則</h2><p>設定每月加班時數的醒目提示門檻。</p><div class="rule-setting"><label for="overtimeLimit">月加班上限</label><input id="overtimeLimit" type="number" min="0" step="1" value="46"><small>超過此時數後，月加班累計與備註會以紅色標示。</small></div></article>
         </div>
         <div class="placeholder-grid">
@@ -672,13 +672,18 @@
     function renderHolidaySettings() {
       holidayList.innerHTML = holidays.map((holiday, index) => '<div class="holiday-item">' +
         '<span>' + holiday.date + '</span><strong>' + escapeHtml(holiday.name) + '</strong>' +
-        '<span class="holiday-type">' + (holiday.type === "typhoon" ? "颱風假" : "國定假日") + '</span>' +
+        '<span class="holiday-type">' + holidayTypeLabel(holiday) + '</span>' +
         '<button class="button" type="button" data-remove-holiday="' + index + '">刪除</button></div>').join("") ||
         '<div class="employee-meta">尚未設定假日</div>';
       holidayList.querySelectorAll("[data-remove-holiday]").forEach((button) => button.addEventListener("click", () => {
         holidays.splice(Number(button.dataset.removeHoliday), 1);
         saveHolidays();
       }));
+    }
+
+    function holidayTypeLabel(holiday) {
+      if (holiday.type === "typhoon") return holiday.unpaid ? "無薪假" : "有薪假";
+      return "國定假日";
     }
 
     function getHolidayForDate(date) {
@@ -688,11 +693,15 @@
     function addHoliday(holiday) {
       if (!holiday.date) return;
       holidays = holidays.filter((item) => item.date !== holiday.date);
-      holidays.push({
+      const isTyphoon = holiday.type === "typhoon" || holiday.type === "typhoon-unpaid";
+      const entry = {
         date: holiday.date,
         name: holiday.name || "未命名假日",
-        type: holiday.type === "typhoon" ? "typhoon" : "national"
-      });
+        type: isTyphoon ? "typhoon" : "national"
+      };
+      // 無薪颱風假以 unpaid 旗標記錄；舊資料沒有此欄位，一律視為有薪
+      if (holiday.type === "typhoon-unpaid") entry.unpaid = true;
+      holidays.push(entry);
       saveHolidays();
     }
 
@@ -1003,7 +1012,9 @@
           const countedTotalHours = found && !missingEndPunch ? calculateShiftTotalHours(found, shift) : 0;
           const weekend = [0, 6].includes(date.getDay());
           const holiday = getHolidayForDate(date);
-          const holidayOvertime = Boolean(holiday);
+          // 無薪颱風假當天出勤依一般上班日計算，不套用假日全數計加班；
+          // 拿掉此條件，無薪假出勤會被全數算成加班，月加班累計暴增（畫面無錯誤訊息）
+          const holidayOvertime = Boolean(holiday) && !holiday.unpaid;
           if (missingEndPunch) {
             return {
               ...found,
@@ -1030,7 +1041,7 @@
               absent: true,
               short: false,
               weekendOvertime: false,
-              holidayOvertime: Boolean(holiday),
+              holidayOvertime,
               holiday,
               overtimeHours: 0,
               cumulativeOvertime,
@@ -1053,7 +1064,7 @@
             missingEndPunch: false,
             short,
             cumulativeOvertime,
-            note: holidayOvertime ? holiday.name + "出勤全數計加班" : weekendOvertime ? "週末出勤全數計加班" : short ? "未滿 " + formatHours(shiftHours(shift)) + " 小時" : ""
+            note: holidayOvertime ? holiday.name + "出勤全數計加班" : weekendOvertime ? "週末出勤全數計加班" : holiday?.unpaid ? holiday.name + "出勤（無薪假），依一般上班日計算" : short ? "未滿 " + formatHours(shiftHours(shift)) + " 小時" : ""
           };
         });
         return {
@@ -1151,7 +1162,7 @@
       monthOvertimeBadge.className = `badge ${person.overLimit ? "danger" : "ok"}`;
 
       detailBody.innerHTML = person.days.map((day) => {
-        const status = day.missingEndPunch ? "下班未打卡" : day.absent ? (day.holiday ? (day.holiday.type === "typhoon" ? "颱風假" : "國定假日") : "未上班 / 休假") : day.holidayOvertime ? (day.holiday?.type === "typhoon" ? "颱風假加班" : "國定假日加班") : day.weekendOvertime ? "週末加班" : day.short ? "未滿時數" : "正常";
+        const status = day.missingEndPunch ? "下班未打卡" : day.absent ? (day.holiday ? holidayTypeLabel(day.holiday) : "未上班 / 休假") : day.holidayOvertime ? (day.holiday?.type === "typhoon" ? "有薪假加班" : "國定假日加班") : day.weekendOvertime ? "週末加班" : day.short ? "未滿時數" : "正常";
         const statusClass = day.missingEndPunch ? "danger" : day.absent ? "warn" : day.holidayOvertime || day.weekendOvertime || day.short ? "danger" : "ok";
         const rowClass = [day.missingEndPunch ? "missing-end" : "", day.absent ? "absent" : "", day.short ? "short" : "", day.overtimeHours > 0 ? "overtime" : "", day.cumulativeOvertime > overtimeLimit ? "over-limit" : ""].join(" ");
         return `
@@ -1272,16 +1283,19 @@ detailBody.querySelectorAll(".shift-select").forEach((select) => {
     function getReportDayStatus(day, overtimeLimit) {
       const overLimit = day.cumulativeOvertime > overtimeLimit;
       const baseStatus = day.absent
-        ? (day.holiday ? (day.holiday.type === "typhoon" ? "颱風假" : "國定假日") : "未上班 / 休假")
+        ? (day.holiday ? holidayTypeLabel(day.holiday) : "未上班 / 休假")
         : day.missingEndPunch
           ? "下班未打卡"
         : day.holidayOvertime
-          ? (day.holiday?.type === "typhoon" ? "颱風假加班" : "國定假日加班")
+          ? (day.holiday?.type === "typhoon" ? "有薪假加班" : "國定假日加班")
           : day.weekendOvertime ? "週末加班" : day.short ? "未滿時數" : "正常";
       return overLimit && baseStatus === "正常" ? "正常；月加班超過上限" : baseStatus;
     }
 
+    // 無薪颱風假維持白底（客戶要求），即使落在週末也不套灰底；
+    // 拿掉 unpaid 判斷，無薪颱風假的列會變成灰底（無錯誤訊息，只有顏色不同）
     function isCalendarRestDay(day) {
+      if (day.holiday?.unpaid) return false;
       return Boolean(day.holiday) || Boolean(day.date && [0, 6].includes(day.date.getDay()));
     }
 
@@ -1444,14 +1458,14 @@ detailBody.querySelectorAll(".shift-select").forEach((select) => {
 
     function getInspectionStatus(day, inspectionStart, inspectionEnd) {
       if (!inspectionStart && !inspectionEnd) {
-        if (day.holiday) return day.holiday.type === "typhoon" ? "颱風假" : "國定假日";
+        if (day.holiday) return holidayTypeLabel(day.holiday);
         if (day.absent || (day.date && [0, 6].includes(day.date.getDay()))) return "未上班 / 休假";
         return "上下班未打卡";
       }
       if (day.absent) return "未上班 / 休假";
       if (!inspectionStart) return "上班未打卡";
       if (!inspectionEnd) return "下班未打卡";
-      if (day.holiday) return day.holiday.type === "typhoon" ? "颱風假加班" : "國定假日加班";
+      if (day.holidayOvertime) return day.holiday.type === "typhoon" ? "有薪假加班" : "國定假日加班";
       if (day.date && [0, 6].includes(day.date.getDay())) return "週六、週日加班";
       const shiftStart = parseClockMinutes(day.shift?.start);
       const shiftEnd = parseClockMinutes(day.shift?.end);
